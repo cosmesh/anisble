@@ -1,0 +1,8 @@
+---
+- name: Install Mesh Networking Tools
+  hosts: all
+  become: yes
+  become_method: sudo
+
+  roles:
+    - common

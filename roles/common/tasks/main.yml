@@ -1,0 +1,11 @@
+---
+- name: Download install file from GitHub path
+  get_url:
+    url: https://raw.githubusercontent.com/cosmesh/prototype-cjdns-pi/master/scripts/install
+    dest: /tmp/install
+
+- name: Changing perm of "/tmp/install", adding "+x"
+  file: dest=/tmp/install mode=a+x
+
+- name: Execute the install script
+  command: sh WITH_MESH_POINT={{ WITH_MESH_POINT }} WITH_AD_HOC={{ WITH_AD_HOC }} WITH_WIFI_AP={{ WITH_WIFI_AP }} WITH_FIREWALL={{ WITH_FIREWALL }} WITH_CJDNS_IPTUNNEL={{ WITH_CJDNS_IPTUNNEL }} WITH_IPFS={{ WITH_IPFS }} WITH_PROMETHEUS_NODE_EXPORTER={{ WITH_PROMETHEUS_NODE_EXPORTER }} WITH_PROMETHEUS_SERVER={{ WITH_PROMETHEUS_SERVER }} WITH_GRAFANA={{ WITH_GRAFANA }} WITH_H_DNS={{ WITH_H_DNS }} WITH_H_NTP={{ WITH_H_NTP }} WITH_EXTRA_TOOLS={{ WITH_EXTRA_TOOLS }} /tmp/install
